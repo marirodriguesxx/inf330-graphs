@@ -4,8 +4,8 @@
 #include <utility>
 #include <map>
 #include <iterator>
-//criando um vetor para armezenar a soma de cada coluna, pois para que uma matriz seja a matriz de incidencia de um grafo simples
-//não orientado, a soma de cada coluna deve ser igual 2!
+// creating a vector to store the sum of each column, because for a matrix to be the incidence matrix of a simple graph
+//not oriented, the sum of each column must be equal to 2!
 
 using namespace std;
 
@@ -17,7 +17,7 @@ int main(){
     for(int i=0; i<t; i++){
         cin>>n>>m;
         vector<vector<int>> matrix;
-        int sum[m]= {0};
+        int sum[m]= {0};    //will store the sum of each column of the given matrix
         for(int j=0; j<n; j++){
             vector<int> row;
             for(int k=0; k<m; k++){
@@ -28,7 +28,8 @@ int main(){
             }
             matrix.push_back(row);
         }
-        //map of all edges of the graph. A simple graph has only one edge between two nodes, then if in a matrixhave two equal edges, cant be a incidence matrix;
+        //map of all edges of the graph. A simple graph has only one edge between two nodes, 
+        //then if in a matrixhave two equal edges, cant be a incidence matrix;
         map<vector<int>,int> edges; 
         bool yes = true;
 
