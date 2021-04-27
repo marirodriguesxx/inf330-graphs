@@ -1,9 +1,0 @@
-! 6 shirt = 5 skirt
-! 6 shirt = 4 pant
-! 5 skirt = 3 underwear
-! 2 skirt = 1 sock
-! 7 pant = 9 bra
-! 12 pant = 16 lol
-? shirt = bra 
-? shirt = underwear
-.
