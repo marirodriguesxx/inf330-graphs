@@ -37,6 +37,8 @@ int evenForest (int t_nodes,int t_edges, const vector<int> &t_from, const vector
         AdjacencyList[t_to[i]].push_back(t_from[i]);
     }
     //creating a vector of visited nodes as a bool vector.
+    //We must check which ones have already been visited to avoid 
+    //returning to the tree, causing it to reverse the parent-child relationship
     bool nodes_visited [t_nodes+1] = {false};
     int resp = 0;
     findSubtrees(AdjacencyList,1,nodes_visited,resp);
@@ -55,6 +57,8 @@ int main(){
         t_from.push_back(edge.first);
         t_to.push_back(edge.second);
     }
+
+    //We will use recursion, as a tip given in class to solve this exercise
     int resp = evenForest(t_nodes, t_edges, t_from, t_to);
     cout<< resp <<"\n";
     

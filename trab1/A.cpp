@@ -29,7 +29,7 @@ int main(){
             matrix.push_back(row);
         }
         //map of all edges of the graph. A simple graph has only one edge between two nodes, 
-        //then if in a matrixhave two equal edges, cant be a incidence matrix;
+        //then if in a matrix have two equal edges, cant be a incidence matrix;
         map<vector<int>,int> edges; 
         bool yes = true;
 
