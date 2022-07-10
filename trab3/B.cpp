@@ -108,7 +108,10 @@ private:
         f(k,vars+1) valor[k]=-1;
         if ( funciona(i,1) ) return true; //Funciona com a variavel i = i ?
         return false; 
-    }  
+    }    
+            
+
+
 };
 
 
@@ -129,15 +132,15 @@ int main() {
         for(int j=0; j<n_routes; j++){
             int linha1 = routeDef[j][0], coluna1 = routeDef[j][1];
             int linha2 = routeDef[j][2], coluna2 = routeDef[j][3];
-            //definindo os quadrantes a qual os pontos pertencem
+            //definindo os quadrantes   
             if(linha1!=linha2 && coluna1!=coluna2){
-                if(linha2 < linha1 && coluna2 > coluna1 ){ //cima e direita
+                if(linha2 < linha1 && coluna2 > coluna1 ){
                     solver.addImplicacao(routeDef[j][1],true,routeDef[j][0]+n_avenues,true);
                     solver.addImplicacao(routeDef[j][1],true,routeDef[j][3],false);
                     solver.addImplicacao(routeDef[j][2]+n_avenues,false,routeDef[j][0]+n_avenues,true);
                     solver.addImplicacao(routeDef[j][2]+n_avenues,false,routeDef[j][3],false);
                 }
-                if(linha2 < linha1 && coluna2 < coluna1 ){ //cima e esquerda
+                if(linha2 < linha1 && coluna2 < coluna1 ){
                     solver.addImplicacao(routeDef[j][2]+n_avenues,true,routeDef[j][0]+n_avenues,false);
                     solver.addImplicacao(routeDef[j][2]+n_avenues,true,routeDef[j][3],false);
                     solver.addImplicacao(routeDef[j][1],true,routeDef[j][0]+n_avenues,false);
@@ -148,13 +151,13 @@ int main() {
                     solver.addImplicacao(routeDef[j][0]+n_avenues,true,routeDef[j][1],false);
                     solver.addImplicacao(routeDef[j][0]+n_avenues,true,routeDef[j][2]+n_avenues,false);
                 }
-                if(linha2 > linha1 && coluna2 < coluna1 ){ //baixo e esquerda
+                if(linha2 > linha1 && coluna2 < coluna1 ){
                     solver.addImplicacao(routeDef[j][2]+n_avenues,true,routeDef[j][0]+n_avenues,false);
                     solver.addImplicacao(routeDef[j][2]+n_avenues,true,routeDef[j][3],true);
                     solver.addImplicacao(routeDef[j][1],false,routeDef[j][0]+n_avenues,false);
                     solver.addImplicacao(routeDef[j][1],false,routeDef[j][3],true);
                 }
-                if(linha2 > linha1 && coluna2 > coluna1 ){ //baixo e direita
+                if(linha2 > linha1 && coluna2 > coluna1 ){
                     solver.addImplicacao(routeDef[j][2]+n_avenues,false,routeDef[j][0]+n_avenues,true);
                     solver.addImplicacao(routeDef[j][2]+n_avenues,false,routeDef[j][3],true);
                     solver.addImplicacao(routeDef[j][1],false,routeDef[j][0]+n_avenues,true);
@@ -168,11 +171,11 @@ int main() {
                 }
 
             }
-            else if(linha1==linha2 && coluna1!=coluna2){ //mesma linha movimentos pra direita ou esuqerda
+            else if(linha1==linha2 && coluna1!=coluna2){
                 if(coluna2 > coluna1) solver.addImplicacao(routeDef[j][0]+n_avenues,false,routeDef[j][0]+n_avenues,true);
                 if(coluna2 < coluna1) solver.addImplicacao(routeDef[j][0]+n_avenues,true,routeDef[j][0]+n_avenues,false);
             }
-            else if(linha1!=linha2 && coluna1==coluna2){ //mesma coluna movimentos para cima ou para baixo
+            else if(linha1!=linha2 && coluna1==coluna2){
                 if(linha2 > linha1) solver.addImplicacao(routeDef[j][1],false,routeDef[j][1],true);
                 if(linha2 < linha1) solver.addImplicacao(routeDef[j][1],true,routeDef[j][1],false); 
             }

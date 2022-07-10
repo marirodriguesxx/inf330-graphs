@@ -1,3 +1,4 @@
+//incompleto
 #include <iostream>
 #include <vector>
 #include<algorithm>
@@ -7,7 +8,7 @@
 #include<set>
 
 using namespace std;
-//Um grafo e euleriano se todos seus vertices possuem grau PAR!
+//Um grafo é euleriano se todos seus vétices possuem grau PAR!
 void ordering(int beads[][2], int size){
     for(int i=0; i<size; i++){
         if(i+1 < size && beads[i+1][0] != beads[i][1]){
@@ -43,16 +44,19 @@ int main(){
             nodes.insert(beads[j][0]);
             nodes.insert(beads[j][1]);
         }
-
+        // for (auto it=nodes.begin(); it != nodes.end(); ++it)     
+        //     cout << ' ' << *it;
+        // cout<<"\n";
         int degree[nodes.size()+1] = {0};
-        //percorrendo a matriz, para cada valor encontrado, incrementaremos 1 na posicao respectiva ao nodo
+        //percorrendo a matriz, para cada valor encontrado, incrementaremos 1 na posição respectiva ao nodo
         for(int i=0; i<n ;i++){
             degree[beads[i][0]]++;
             degree[beads[i][1]]++;
         }
         bool euleriano = true;
         for(int i=1; i<nodes.size()+1; i++){
-            if(degree[i]%2 != 0) euleriano = false; //caso o vertice n tenha grau par
+            if(degree[i]%2 != 0) euleriano = false;
+            //cout<<degree[i]<<" ";
         }
         int elementos_conexos = n-nodes.size();
         //cout<<"conexos: "<<elementos_conexos<<endl;

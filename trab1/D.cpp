@@ -14,6 +14,7 @@ int findSubtrees(vector<int> AdjacencyList[],int pos, bool nodes_visited[], int 
     nodes_visited[pos] = true; //already visited!
     int nodes_subtree=0;
     int subtreeNodes = 0;   //Numbre of nodes in the subtree
+
     //looking all neighbors the node in pos
     for(int i=0; i<AdjacencyList[pos].size(); i++){
         if(!nodes_visited[AdjacencyList[pos][i]]){
@@ -21,10 +22,11 @@ int findSubtrees(vector<int> AdjacencyList[],int pos, bool nodes_visited[], int 
             //If the number of nodes is even, we increment the answer, which was passed by reference so that we can change it. 
             //If it were created within the scope of the function, its value would always be reset 
             if (nodes_subtree % 2 == 0) resp++; 
-            else subtreeNodes += nodes_subtree;
+            else
+                subtreeNodes += nodes_subtree;
         }
     }
-    return subtreeNodes+1; // return the number of nodes in the subtree
+    return (subtreeNodes + 1); // return the number of nodes in the subtree
 }
 
 
@@ -37,8 +39,6 @@ int evenForest (int t_nodes,int t_edges, const vector<int> &t_from, const vector
         AdjacencyList[t_to[i]].push_back(t_from[i]);
     }
     //creating a vector of visited nodes as a bool vector.
-    //We must check which ones have already been visited to avoid 
-    //returning to the tree, causing it to reverse the parent-child relationship
     bool nodes_visited [t_nodes+1] = {false};
     int resp = 0;
     findSubtrees(AdjacencyList,1,nodes_visited,resp);
@@ -57,8 +57,6 @@ int main(){
         t_from.push_back(edge.first);
         t_to.push_back(edge.second);
     }
-
-    //We will use recursion, as a tip given in class to solve this exercise
     int resp = evenForest(t_nodes, t_edges, t_from, t_to);
     cout<< resp <<"\n";
     

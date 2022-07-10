@@ -44,7 +44,6 @@ bool &tem, pair<int,int> &result2){
         if(visited[adjacencyList[posA][i].first]==false){
             hasPath(adjacencyList,adjacencyList[posA][i].first,posB,visited,result,tem,result2);  
         }
-        //if the path taken does not reach the desired node, we undo the operation.
         result.first = result.first / num;
         result.second = result.second / den;                             
     }
@@ -92,6 +91,22 @@ int main(){
         else if(operation=='.')break;
     }
 
-        
+    //Debug ===========================================================================================================================
+    // cout<<"Códigos atribuídos: \n";
+    // map<string,int>::iterator it = values.begin();
+    // for (it=values.begin(); it!=values.end(); ++it)
+    //     cout << it->first << " => " << it->second << '\n';
+    // cout<<"\nAdjacency List: \n";
+    // for(int i=0; i<adjacencyList.size(); i++){
+    //     cout<<i<<": ";
+    //     for(int j=0; j<adjacencyList[i].size(); j++){
+    //         cout<<adjacencyList[i][j].first<<"("<<adjacencyList[i][j].second.first<<","<<adjacencyList[i][j].second.second<<") ";
+    //     }
+    //     cout<<"\n";
+    //}
+        // for(int i=0; i<visited.size();i++)
+        //     cout<<visited[i]<<" ";
+    //=================================================================================================================================
+    
     return 0;
 }

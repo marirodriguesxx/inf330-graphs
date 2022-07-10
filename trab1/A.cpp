@@ -4,20 +4,23 @@
 #include <utility>
 #include <map>
 #include <iterator>
-// creating a vector to store the sum of each column, because for a matrix to be the incidence matrix of a simple graph
-//not oriented, the sum of each column must be equal to 2!
+
+//criando um vetor para armezenar a soma de cada coluna, pois para que uma matriz seja a matriz de incidencia de um grafo simples
+//não orientado, a soma de cada coluna deve ser igual 2!
 
 using namespace std;
 
 int main(){
     int t; //number of test cases
     int n,m; //n (number of vertices), m (number of edges)
+    //vector<vector<vector<int>>> IncidenceMatrixs;
+
     cin>>t;
 
     for(int i=0; i<t; i++){
         cin>>n>>m;
         vector<vector<int>> matrix;
-        int sum[m]= {0};    //will store the sum of each column of the given matrix
+        int sum[m]= {0};
         for(int j=0; j<n; j++){
             vector<int> row;
             for(int k=0; k<m; k++){
@@ -28,9 +31,14 @@ int main(){
             }
             matrix.push_back(row);
         }
-        //map of all edges of the graph. A simple graph has only one edge between two nodes, 
-        //then if in a matrix have two equal edges, cant be a incidence matrix;
-        map<vector<int>,int> edges; 
+        //IncidenceMatrixs.push_back(matrix);
+
+        // for(int j=0; j<m; j++)
+        //     cout<<sum[j]<<"-";
+        // cout<<"\n";
+
+        map<vector<int>,int> edges; //map of all edges of the graph. A simple graph has only one edge between two nodes, then if in a matrix
+        //have two equal edges, cant be a incidence matrix;
         bool yes = true;
 
         pair<map<vector<int>,int>::iterator,bool> edges_bool;
@@ -41,7 +49,9 @@ int main(){
                 col.push_back(matrix[k][j]);
             if (sum[j] == 2)
                 edges_bool = edges.insert(pair<vector<int>,int>(col,j)); 
+            //cout<<sum[j]<<"\n";
             if(sum[j] != 2 || !edges_bool.second) yes = false;
+            //cout<<"yes:"<<yes<<"\n";
         }
         
         if(yes) cout<<"Yes\n";

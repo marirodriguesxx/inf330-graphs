@@ -8,16 +8,16 @@
 using namespace std;
 
 bool dfs(vector<int> adjacencyList[], int colors[],int pos,int color){    
-    if(colors[pos]!=-1){ //if the vertex already has a color
-        if(colors[pos]!=color) return false; //and this color is different to be painted we return false
+    if(colors[pos]!=-1){
+        if(colors[pos]!=color) return false;
         else return true;
     }
     colors[pos] = color;
     for(int i=0; i<adjacencyList[pos].size(); i++){
-        bool aux = dfs(adjacencyList,colors,adjacencyList[pos][i],1-color); //Checking the children's colors
+        bool aux = dfs(adjacencyList,colors,adjacencyList[pos][i],1-color);  
         if(!aux) return false;
     }
-    return true; //if in none of the cases there are adjacent colors we return the true Boolean value
+    return true;
 }
 int main(){
     int n=0; //number of vertices in graph
@@ -32,9 +32,18 @@ int main(){
         }
 
         int colors[n+1] ; //number os sets that we can divide the graph
-        for(int i=0; i<=n; i++) colors[i]=-1; //Initializing colors with -1, meaning no color
+        bool resp=false;
+        for(int i=0; i<=n; i++) colors[i]=-1;
 
-        if(dfs(adjacencyList,colors,1,0)) cout<<"YES\n"; 
+        // for(int i=1; i<=n ; i++){
+        //     if(colors[i]!=-1)continue;
+        //     if(dfs(adjacencyList,colors,i,0)){
+        //         cout<<"YES\n"; resp = true; break;
+        //     }                              
+        // }
+
+        if(dfs(adjacencyList,colors,1,0))
+            cout<<"YES\n"; 
         else cout<<"NO\n";
    
     }
